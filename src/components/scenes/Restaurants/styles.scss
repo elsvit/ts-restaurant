@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.restaurantsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: wheat;
+}
+
+.filterSortSection {
+  position: fixed;
+  top: 20px;
+  right: 130px;
+  display: flex;
+  flex-direction: row;
+  width: ($restaurantSelectWidth + $marginMd) * 2;
+
+  > .textField {
+    margin-left: $marginMd;
+    margin-right: $marginMd;
+    flex: 1;
+    width: $restaurantSelectWidth;
+  }
+}

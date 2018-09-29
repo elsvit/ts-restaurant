@@ -1,0 +1,58 @@
+@import '../../../../styles/variables';
+
+.restaurantRaw {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin: $marginSm;
+  padding: $paddingMd;
+  background-color: white;
+  border: 1px solid $gray;
+  cursor: pointer;
+  color: $darkGray;
+  text-decoration: none;
+
+  > .logo {
+    margin: $marginSm;
+
+    > img {
+      width: $logoWidth;
+    }
+  }
+
+  .restaurantInfoWrapper {
+    margin: $marginSm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > .nameRowWrapper {
+      flex: 1;
+      align-items: center;
+      font-size: $fontLg;
+      font-weight: bold;
+    }
+
+    > .locationWrapper {
+      flex: 1;
+      align-items: center;
+      font-size: $fontMd;
+      font-weight: normal;
+      line-height: $fontMd * 1.5;
+    }
+
+    > .categoryWrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      font-size: $fontMd;
+      font-weight: normal;
+
+      > .category {
+        border: 1px solid $lightGray;
+        padding: $paddingSm;
+        margin: $marginSm;
+      }
+    }
+  }
+}

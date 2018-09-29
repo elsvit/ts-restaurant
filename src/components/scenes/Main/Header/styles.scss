@@ -1,0 +1,38 @@
+@import '../../../../styles/variables';
+
+.mainHeaderContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $mainHeaderHeight;
+  background-color: $appBgColor;
+
+  > .leftBlock {
+    height: $mainHeaderHeight;
+    width: $mainHeaderHeight;
+
+    > .logo {
+      height: $mainHeaderHeight - 2 * $paddingSm;
+      width: $mainHeaderHeight - 2 * $paddingSm;
+      padding: $paddingSm;
+    }
+  }
+  > .rightBlock {
+    align-items: center;
+    text-align: right;
+    cursor: pointer;
+    color: $linkColor;
+    background-color: wheat;
+    margin-right: $marginLg;
+    //margin-bottom: 20px;
+    padding: $paddingLg;
+    border-radius: $paddingLg / 2;
+
+    &:hover {
+      color: $linkHoverColor
+    }
+  }
+}

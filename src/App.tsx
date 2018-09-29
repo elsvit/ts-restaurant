@@ -1,22 +1,45 @@
 import * as React from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+import { HashRouter as Router, Redirect, Route, RouteProps, Switch } from 'react-router-dom';
 
-import logo from './logo.svg';
+import './App.scss';
+import Main from './components/scenes/Main';
+import Restaurant from './components/scenes/Restaurant';
+import Restaurants from './components/scenes/Restaurants';
+import { IAppState } from './store';
 
-class App extends React.Component {
+interface IAppProps extends RouteProps {
+  isAuthenticated: boolean;
+}
+
+class App extends React.Component<IAppProps> {
   public render() {
+    const { isAuthenticated } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          {isAuthenticated ? (
+            <Switch>
+              <Route path="/restaurants" component={Restaurants} />
+              <Route path="/restaurant/:id" component={Restaurant} />
+              <Redirect to="/restaurants" />
+            </Switch>
+          ) : (
+            <Switch>
+              <Route path="/login" component={Main} />
+              <Redirect to="/login" />
+            </Switch>
+          )}
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: IAppState) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(
+  mapStateToProps,
+)(App);

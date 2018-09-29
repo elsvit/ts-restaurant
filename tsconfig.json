@@ -19,12 +19,17 @@
     "noUnusedLocals": true
   },
   "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
     "acceptance-tests",
-    "webpack",
+    "build",
+    "config-overrides",
     "jest",
-    "src/setupTests.ts"
-  ]
+    "node_modules",
+    "override-config.js",
+    "src/setupTests.ts",
+    "webpack"
+  ],
+  "paths": {
+    "src/*": ["./src/*"],
+    "variables/*": ["./src/styles/variables/*"]
+  }
 }
