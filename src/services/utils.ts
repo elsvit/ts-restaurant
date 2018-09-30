@@ -17,7 +17,11 @@ export const filterRestaurants = (restaurants: IRestaurant[], value: string) => 
       }
       return o1;
     });
-    const res = flattenDeep(arr).some(el => String(el).toLowerCase().includes(value.toLowerCase()));
+    const res = flattenDeep(arr).some(el =>
+      String(el)
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    );
     return res;
   });
   return filteredRestaurants;

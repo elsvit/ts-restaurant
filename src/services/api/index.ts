@@ -38,6 +38,10 @@ class Client {
   public setToken(token: string): void {
     this.token = token;
   }
+
+  public getToken(): Maybe<string> {
+    return this.token;
+  }
 }
 
 let instance: any;

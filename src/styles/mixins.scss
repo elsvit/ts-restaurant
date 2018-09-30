@@ -1,0 +1,12 @@
+@import './variables';
+
+@mixin reactLoading {
+  .reactLoadingWrapper {
+    width: 100%;
+
+    > div {
+      margin: $marginLg auto;
+    }
+  }
+}
+

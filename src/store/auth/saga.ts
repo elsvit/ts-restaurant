@@ -5,10 +5,7 @@ import { GET_TOKEN, LOGOUT, getTokenFail, getTokenSuccess } from '.';
 
 import { setError, setLoading } from '../common';
 
-//for test
-// const testAuth = require('src/assets/testdata/auth.json');
-
-function* sagaGetToken() {
+export function* sagaGetToken() {
   try {
     put(setLoading({ actionType: GET_TOKEN, loading: true }));
     const res = yield api().auth.get();
@@ -17,12 +14,11 @@ function* sagaGetToken() {
       yield put(getTokenSuccess());
       api().setToken(token);
     } else {
+      yield put(setError({ actionType: GET_TOKEN, message: 'Empty Token' }));
       yield put(getTokenFail());
       api().setToken('');
     }
 
-    // for test
-    // yield put(getTokenSuccess(testAuth.token));
   } catch (err) {
     yield put(setError({ actionType: GET_TOKEN, message: err.message }));
   }

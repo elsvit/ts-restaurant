@@ -4,7 +4,6 @@ import {Provider} from 'react-redux';
 
 import App from './App';
 import configApi from './constants/api';
-// import registerServiceWorker from './registerServiceWorker';
 import configureApi from './services/api';
 import store from './store';
 
@@ -18,4 +17,3 @@ ReactDOM.render(
   ),
   document.getElementById('root') as HTMLElement,
 );
-// registerServiceWorker();

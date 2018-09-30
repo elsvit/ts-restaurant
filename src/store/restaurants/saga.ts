@@ -1,18 +1,17 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
 import api from 'src/services/api';
-import {
-  GET_RESTAURANT,
-  GET_RESTAURANTS,
-  getRestaurantSuccess,
-  getRestaurantsSuccess,
-} from '.';
-
+import { GET_RESTAURANT, GET_RESTAURANTS, getRestaurantSuccess, getRestaurantsSuccess } from '.';
+import { sagaGetToken } from '../auth/saga';
 import { setError, setLoading } from '../common';
 
 function* sagaGetRestaurants() {
   try {
-    put(setLoading({ actionType: GET_RESTAURANTS, loading: true }));
+    const token = api().getToken();
+    if (!token) {
+      yield sagaGetToken();
+    }
+    yield put(setLoading({ actionType: GET_RESTAURANTS, loading: true }));
     const res = yield api().restaurants.get();
     const data = res.data;
     if (data) {
@@ -21,13 +20,12 @@ function* sagaGetRestaurants() {
   } catch (err) {
     yield put(setError({ actionType: GET_RESTAURANTS, message: err.message }));
   }
-  put(setLoading({ actionType: GET_RESTAURANTS, loading: false }));
+  yield put(setLoading({ actionType: GET_RESTAURANTS, loading: false }));
 }
 
-function* sagaGetRestaurant({ id, type }: {id: string, type: typeof GET_RESTAURANT}) {
-  console.log('sagaGetRestaurant id', id, 'type', type);
+function* sagaGetRestaurant({ id, type }: { id: string; type: typeof GET_RESTAURANT }) {
   try {
-    put(setLoading({ actionType: type, loading: true }));
+    yield put(setLoading({ actionType: type, loading: true }));
     const res = yield api().restaurants.getById(id);
     const data = res.data;
     if (data) {
@@ -37,7 +35,7 @@ function* sagaGetRestaurant({ id, type }: {id: string, type: typeof GET_RESTAURA
     console.log('saga error:', err);
     yield put(setError({ actionType: type, message: err.message }));
   }
-  put(setLoading({ actionType: type, loading: false }));
+  yield put(setLoading({ actionType: type, loading: false }));
 }
 
 export default function*(): Generator {

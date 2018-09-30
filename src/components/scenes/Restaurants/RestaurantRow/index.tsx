@@ -21,7 +21,7 @@ class RestaurantRow extends React.Component<IRestaurantRowProps> {
     const location = `${streetNumber}, ${streetName}, ${city}`;
     const categories = get(restaurant, 'general.categories', []);
     return (
-      <NavLink to={`/restaurant/${restaurant.id}`} className="restaurantRaw">
+      <NavLink to={`/restaurant/${restaurant.id}`} className="restaurantRow">
         <div className="logo">
           <img className="flex" src={logoUri} alt="" />
         </div>

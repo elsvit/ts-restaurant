@@ -1,14 +1,12 @@
 @import '../../../../styles/variables';
 
-.restaurantRow {
+.restaurantRaw {
   flex: 1;
   display: flex;
   flex-direction: row;
   margin: $marginSm;
   padding: $paddingMd;
   background-color: white;
-  border: 1px solid $gray;
-  cursor: pointer;
   color: $darkGray;
   text-decoration: none;
 
@@ -52,6 +50,51 @@
         border: 1px solid $lightGray;
         padding: $paddingSm;
         margin: $marginSm;
+      }
+    }
+  }
+}
+
+.restaurantSectionRow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: $marginSm;
+  padding: $paddingMd;
+  background-color: white;
+  border: 1px solid $gray;
+  color: $darkGray;
+
+  > .sectionNameBlock {
+    font-size: $fontMd;
+  }
+
+  > .sectionItemsBlock {
+    display: flex;
+    flex-direction: column;
+    padding: $paddingSm;
+
+    > .sectionItemBlock {
+      display: flex;
+      flex-direction: row;
+      padding: $paddingSm;
+      margin-left: $marginLg;
+
+      > .productName {
+        flex: 4;
+        padding: $paddingSm;
+      }
+
+      > .productPrice {
+        flex: 1;
+        padding: $paddingSm;
+      }
+
+      > .productBtn {
+        flex: 5;
+        color: blue;
+        cursor: pointer;
+        padding: $paddingSm;
       }
     }
   }

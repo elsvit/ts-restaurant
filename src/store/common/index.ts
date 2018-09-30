@@ -6,7 +6,7 @@ export const ERROR: 'ERROR' = 'ERROR';
 
 export type ActionApiT = AuthApiT | RestaurantsApiT;
 
-interface ICommonState {
+export interface ICommonState {
   error: { [actionType: string]: string | null };
   loading: { [actionType: string]: boolean };
 }
@@ -35,12 +35,11 @@ const initialState: ICommonState = {
 export default function reducer(state = initialState, action: AuthActions) {
   switch (action.type) {
     case LOADING:
-      const newState = { ...state };
-      newState.loading[action.actionType] = action.loading;
-      if (action.loading) {
-        newState.error[action.actionType] = null;
-      }
-      return newState;
+      return {
+        ...state,
+        error: { ...state.error, [action.actionType]: null },
+        loading: { ...state.loading, [action.actionType]: action.loading as boolean },
+      };
 
     case ERROR:
       return {
@@ -53,6 +52,14 @@ export default function reducer(state = initialState, action: AuthActions) {
   }
 }
 
-export const setLoading = ({ actionType, loading }: LoadingAction) => ({ type: LOADING, actionType, loading });
+export const setLoading = ({ actionType, loading }: LoadingAction) => ({
+  actionType,
+  loading,
+  type: LOADING,
+});
 
-export const setError = ({ actionType, message }: ErrorAction) => ({ type: ERROR, actionType, message });
+export const setError = ({ actionType, message }: ErrorAction) => ({
+  actionType,
+  message,
+  type: ERROR,
+});

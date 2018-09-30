@@ -21,8 +21,6 @@ export interface IAppState {
 }
 
 const sagaMiddleware = createSagaMiddleware();
-//tslint:disable:max-line-length
-//tslint:enable:max-line-length
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 sagas.forEach((saga: any) => sagaMiddleware.run(saga));

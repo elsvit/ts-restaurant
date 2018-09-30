@@ -1,14 +1,14 @@
 export const GET_RESTAURANTS: 'restaurants/GET' = 'restaurants/GET';
 export const GET_RESTAURANTS_SUCCESS: 'restaurants/GET_SUCCESS' = 'restaurants/GET_SUCCESS';
 export const GET_RESTAURANT: 'restaurants/GET_RESTAURANT' = 'restaurants/GET_RESTAURANT';
-export const GET_RESTAURANT_SUCCESS: 'restaurants/GET_RESTAURANT_SUCCESS' = 'restaurants/GET_RESTAURANT_SUCCESS';
+export const GET_RESTAURANT_SUCCESS: 'restaurants/GET_RESTAURANT_SUCCESS' =
+  'restaurants/GET_RESTAURANT_SUCCESS';
 
 export type RestaurantsApiT =
   | typeof GET_RESTAURANTS
   | typeof GET_RESTAURANTS_SUCCESS
   | typeof GET_RESTAURANT
-  | typeof GET_RESTAURANT_SUCCESS
-  ;
+  | typeof GET_RESTAURANT_SUCCESS;
 
 export interface IRestaurant {
   id: string;
@@ -58,6 +58,20 @@ export interface IRestaurantsPagination {
   offset?: number;
 }
 
+export interface IRestaurantSectionItem {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  picture: string;
+}
+
+export interface IRestaurantSection {
+  id: number;
+  name: string;
+  items: IRestaurantSectionItem[];
+}
+
 export interface IRestaurantAll {
   info: {
     name: string;
@@ -73,17 +87,7 @@ export interface IRestaurantAll {
     invoiceAddress: string;
   };
   offers: {};
-  sections: {
-    id: number;
-    name: string;
-    items: {
-      id: number;
-      name: string;
-      price: number;
-      description: string;
-      picture: string;
-    }[];
-  }[];
+  sections: IRestaurantSection[];
   rating: {
     [key: string]: number;
   };
@@ -163,8 +167,7 @@ type RestaurantsActions =
   | GetRestaurantsAction
   | GetRestaurantsSuccessAction
   | GetRestaurantAction
-  | GetRestaurantSuccessAction
-  ;
+  | GetRestaurantSuccessAction;
 
 const initialState: IRestaurantsState = {
   data: [],

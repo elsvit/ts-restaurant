@@ -39,7 +39,7 @@ type AuthActions =
   ;
 
 const initialState: IAuthState = {
-  isAuthenticated: false,
+  isAuthenticated: true,
 };
 
 export default function reducer(state = initialState, action: AuthActions) {
